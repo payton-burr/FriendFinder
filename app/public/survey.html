@@ -183,7 +183,7 @@
   $('#submit').on('click', function(event) {
     event.preventDefault();
 
-    let newFriend = {
+    let userData = {
       name: $('#name').val().trim(),
       photo: $('#photo').val().trim(),
       scores: [
@@ -200,9 +200,10 @@
       ]
     };
 
-    $.post('/api/friends', newFriend).then(function(data) {
+    $.post('/api/friends', userData).then(function(data) {
+      console.log(data);
       $('#matchName').text(data.name);
-      $('#matchImg').text(data.photo);
+      $('#matchImg').attr("src", data.photo);
 
       $('#resultsModal').modal('toggle');
     })
